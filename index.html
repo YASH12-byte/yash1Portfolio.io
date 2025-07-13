@@ -1,57 +1,55 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>yash's Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone-Style Camera with Location</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("service-worker.js");
+      });
+    }
+  </script>
 </head>
+
 <body>
-
-<header>
-  <h1>Welcome to My Personal Site</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="books.html">Books</a>
-  </nav>
-</header>
-
-<div class="container">
-  <img src="yash.jpg" alt="yash" class="profile">
-
-  <h2>SACRIFICE = SUCCESS | Best Study Motivation</h2>
-  <!-- ✅ Corrected YouTube embed URL -->
-  <iframe width="560" height="315" 
-    src="https://www.youtube.com/embed/CFiCdpnn-jo" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowfullscreen>
-  </iframe>
-
-  <h2>Achievements</h2>
-  <ul>
-    <li>Built 5+ full-stack projects</li>
-    <li>Top 10% in National Coding Competition</li>
-    <li>Interned at XYZ Tech as a Backend Developer</li>
-  </ul>
-
-  <h2>Favorite Websites</h2>
-  <ul>
-    <li><a href="https://stackoverflow.com">StackOverflow</a> – for community-driven problem solving</li>
-    <li><a href="https://github.com">GitHub</a> – for open-source exploration and contribution</li>
-  </ul>
-
-  <h2>Favorite Startups</h2>
-  <ul>
-    <li>Notion – excellent UI/UX and productivity-driven</li>
-    <li>Figma – collaborative design at its finest</li>
-  </ul>
-</div>
-
-<footer>
-  &copy; 2025 yash | All rights reserved
-</footer>
-
+  <div class="background">
+    <div class="camera-container">
+      <video id="video" autoplay></video>
+      <button id="capture-btn">📸</button>
+      <a id="download-btn" style="display:none;" class="download-btn">⬇️</a>
+      <button id="toggle-btn" class="toggle-btn">🔄</button>
+      <canvas id="canvas"></canvas>
+      <div id="location" class="location-box">📍 Fetching location...</div>
+      <div id="datetime" class="datetime-box"></div>
+      <label for="bg-select">Background:</label>
+      <select id="bg-select">
+        <option value="default">Default</option>
+        <option value="hero">hero</option>
+        <option value="city">City</option>
+        <option value="mountain">Mountain</option>
+      </select>
+      <input type="file" id="bg-upload" accept="image/*" style="margin-top:8px;">
+      <div id="map" style="height: 200px; width: 100%; margin-top: 10px;"></div>
+    </div>
+    <div id="gallery" class="gallery">
+      <img src="images/hero.jpg" alt="hero" class="gallery-img">
+      <img src="images/flower.jpg" alt="flower" class="gallery-img">
+      <img src="images/city.jpg" alt="city" class="gallery-img">
+      <img src="images/mountain.jpg" alt="mountain" class="gallery-img">
+      <img src="images/photo.jpg" alt="photo" class="gallery-img">
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <div id="lightbox-modal" style="display:none;position:fixed;z-index:1000;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;">
+    <img id="lightbox-img" src="" style="max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 2px 16px #000;" />
+  </div>
 </body>
 </html>

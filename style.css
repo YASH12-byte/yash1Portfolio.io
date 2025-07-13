@@ -1,54 +1,151 @@
-body {
-  font-family: Arial, sans-serif;
+body, html {
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
-  color: #333;
+  font-family: sans-serif;
+  height: 100%;
 }
 
-header, footer {
-  background-color: #222;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-
-nav a {
-  margin: 0 10px;
-  color: white;
-  text-decoration: none;
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
+.background {
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
   padding: 20px;
-  background: white;
 }
 
-img.profile {
-  width: 150px;
-  border-radius: 50%;
-  display: block;
-  margin: 20px auto;
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
 }
 
 video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#canvas {
+  display: none;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#capture-btn, .toggle-btn, .download-btn {
+  position: absolute;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#capture-btn {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toggle-btn {
+  bottom: 20px;
+  right: 20px;
+}
+
+.download-btn {
+  bottom: 20px;
+  left: 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.gallery {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.gallery-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+.location-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255,255,255,0.8);
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+/* Background image for camera */
+.camera-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.camera-container video {
+  position: relative;
+  z-index: 2;
+}
+
+#map {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  margin-top: 12px;
+}
+
+#bg-upload {
   display: block;
-  margin: 20px auto;
-  max-width: 100%;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-h1, h2 {
-  color: #444;
+#lightbox-modal {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-ul {
-  padding-left: 20px;
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 10px;
-  }
+#lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #000;
 }

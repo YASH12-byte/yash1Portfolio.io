@@ -1,0 +1,16 @@
+
+{
+  "name": "Phone Camera App",
+  "short_name": "CameraApp",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a2a6c",
+  "icons": [
+    {
+      "src": "images/nature1.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
